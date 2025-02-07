@@ -31,17 +31,36 @@ function Home() {
 
             }
 
-            loadPopularMovies();
+         
         }
 
-
+        loadPopularMovies()
     }, [])
 
 
-    const handleSearch = (event) => {
+    const handleSearch = async (event) => {
         event.preventDefault()
-        alert(searchQuery)
-        setSearchQuery("........")
+
+        if (!searchQuery.trim()){
+            return;
+        }
+        setLoading(true)
+        if(loading) return 
+
+        try {
+            const searchResults = await searchMovies(searchQuery);
+            setMovies(searchResults);
+            setError(null)
+
+        }catch(err){
+            console.log(err)
+            setError("Failed to search movies....");  
+        }
+        finally{
+            setLoading(false)
+        }
+
+
 
     };
 
@@ -63,12 +82,21 @@ function Home() {
                 <button type="submit" className="search-button">Search</button>
             </form>
 
-            <div className="movie-grid">
+            { error && <div className = "error-Messages" > {error} </div>}
+
+            { loading ? (
+                <div className="loading">Loading...</div>
+            ): (
+
+                <div className="movies-grid">
                 {movies.map((movie) => (
                    movie.title.toLowerCase().startsWith(searchQuery) && (
                    <MovieCard movie={movie} key={movie.id}/> )
                 ))}
             </div>
+
+            )}
+           
 
         </div>
 
