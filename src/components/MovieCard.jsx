@@ -1,4 +1,4 @@
-
+import "../css/MovieCard.css"
 
 function MovieCard({movie}) {
 
@@ -14,7 +14,7 @@ function MovieCard({movie}) {
     return (
         <div className="movie-card">
             <div className="movie-poster">
-                <img src={movie.url} alt={movie.title}/>
+                <img src={`https://image.tmb.org/t/p/w500${movie.post_path}`} alt={movie.title}/>
                 <div className="movie-overlay">
 
                     <button className="favorite-btn" onClick={onFavoriteClick}>
