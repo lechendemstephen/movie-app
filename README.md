@@ -25,7 +25,7 @@ Movie Platform is a web application that allows users to browse and search for m
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/movie-platform.git
+   git clone https://github.com/lechendemstephen/movie-platform.git
    ```
 2. Navigate to the project directory:
    ```bash
